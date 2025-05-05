@@ -33,6 +33,6 @@ echo "Starting scraper server..."
 # echo "Server started in background. Logs: $APP_DIR/out.log"
 
 # Start the server using PM2
-pm2 start server.js --name scrape-api
+pm2 start server.js
 pm2 save
 pm2 startup --hp ubuntu
