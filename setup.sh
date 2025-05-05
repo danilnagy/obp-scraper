@@ -28,7 +28,8 @@ fi
 
 echo "Installing packages with npm..."
 npm install
-npx playwright install
+sudo npx playwright install
+sudo npx playwright install-deps
 
 # Clean existing PM2 processes
 pm2 delete all || true
