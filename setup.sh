@@ -13,7 +13,7 @@ curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
 echo "Installing pnpm..."
-npm install -g pnpm
+sudo npm install -g pnpm
 
 # Clone or update the repo
 if [ -d "$APP_DIR" ]; then
