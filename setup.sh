@@ -12,6 +12,14 @@ echo "Installing Node.js..."
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
+# Install Playwright dependencies
+sudo apt install -y libatk1.0-0 libatk-bridge2.0-0 libcups2 libatspi2.0-0 \
+  libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 \
+  libcairo2 libasound2
+
+# Install PM2 globally
+sudo npm install -g pm2
+
 # Clone or update the repo
 if [ -d "$APP_DIR" ]; then
   echo "Directory $APP_DIR exists. Pulling latest changes..."
@@ -36,6 +44,6 @@ echo "Starting scraper server..."
 # echo "Server started in background. Logs: $APP_DIR/out.log"
 
 # Start the server using PM2
-pm2 start --name scrape-api server.js -f
+pm2 start server.js --name scrape-api -f
 pm2 save
 pm2 startup --hp ubuntu
