@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 // Scrape endpoint
 app.get("/scrape", async (req, res) => {
   try {
-    const title = await scrapeExampleDotCom();
+    const title = await scrapeExampleDotCom("6051Grafton", "@Remivi6051");
     res.json({ status: "success", title });
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
