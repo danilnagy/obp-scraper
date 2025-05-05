@@ -10,7 +10,10 @@ async function scrapeExampleDotCom(username, password) {
   // const title = await page.title();
   // await browser.close();
   // return title;
-  const browser = await chromium.launch({ headless: false }); // headless on the server
+
+  const browser = await chromium.launch({ headless: true }); // headless on the server
+  // const browser = await chromium.launch({ headless: false });
+
   const context = await browser.newContext({ acceptDownloads: true });
   const page = await context.newPage();
 
