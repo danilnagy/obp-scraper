@@ -14,7 +14,9 @@ click "Launch instance"
 click on instance
 
 log into instance
+
 - Connect, Connect
+
 ```
 wget https://raw.githubusercontent.com/danilnagy/obp-scraper/main/setup.sh
 chmod +x setup.sh
@@ -25,14 +27,27 @@ go to Security
 click security group link
 click Edit inbound rules
 Add a rule:
-  ```
-  Type: Custom TCP
-  Port range: 3232
-  Source: 0.0.0.0/0 (or your IP only for security)
-  ```
+
+```
+Type: Custom TCP
+Port range: 3232
+Source: 0.0.0.0/0 (or your IP only for security)
+```
 
 go to intance
 get public IP address: Public IPv4 address
 
 got to http://<PUBLIC_IP>:3232/
 
+Local testing
+
+```
+npm install
+npx playwright install-deps
+npx playwright install
+node server.js
+```
+
+Notes:
+
+- no hot reload when running server locally

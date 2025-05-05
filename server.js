@@ -1,6 +1,6 @@
 // server.js
 const express = require("express");
-const { chromium } = require("playwright");
+const { scrapeExampleDotCom } = require("./scraper");
 
 const app = express();
 const PORT = 3232;
@@ -13,25 +13,10 @@ app.use((req, res, next) => {
 
 // Scrape endpoint
 app.get("/scrape", async (req, res) => {
-  let browser;
   try {
-    browser = await chromium.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto("https://example.com");
-
-    const title = await page.title();
-    const content = await page.textContent("body");
-
-    await browser.close();
-
-    res.json({
-      status: "success",
-      title,
-      content: content?.substring(0, 200) || "", // limit to first 200 characters
-    });
+    const title = await scrapeExampleDotCom();
+    res.json({ status: "success", title });
   } catch (err) {
-    if (browser) await browser.close();
-    console.error("Scraping failed:", err);
     res.status(500).json({ status: "error", message: err.message });
   }
 });
