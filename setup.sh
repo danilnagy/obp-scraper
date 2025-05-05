@@ -12,11 +12,6 @@ echo "Installing Node.js..."
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
-# Install Playwright dependencies
-sudo apt install -y libatk1.0-0 libatk-bridge2.0-0 libcups2 libatspi2.0-0 \
-  libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 \
-  libcairo2 libasound2
-
 # Install PM2 globally
 sudo npm install -g pm2
 
