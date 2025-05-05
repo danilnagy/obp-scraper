@@ -3,7 +3,7 @@ const express = require("express");
 const { chromium } = require("playwright");
 
 const app = express();
-const PORT = 3000;
+const PORT = 3232;
 
 // Optional: add basic logging
 app.use((req, res, next) => {
