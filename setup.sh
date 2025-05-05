@@ -27,6 +27,9 @@ echo "Installing packages with npm..."
 npm install
 npx playwright install
 
+# Clean existing PM2 processes
+pm2 delete all || true
+
 echo "Starting scraper server..."
 # You can replace this with pm2 or systemd if preferred
 # nohup npm start > out.log 2>&1 &
