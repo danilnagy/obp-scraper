@@ -2,7 +2,7 @@
 set -e
 
 REPO_URL="https://github.com/danilnagy/obp-scraper.git"
-APP_DIR="/home/ubuntu/scraper"
+APP_DIR="/home/ubuntu/obp-scraper"
 
 echo "Installing dependencies..."
 sudo apt update
@@ -11,9 +11,6 @@ sudo apt install -y curl git build-essential
 echo "Installing Node.js..."
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
-
-# echo "Installing pnpm..."
-# sudo npm install -g pnpm
 
 # Clone or update the repo
 if [ -d "$APP_DIR" ]; then
@@ -28,9 +25,14 @@ fi
 
 echo "Installing packages with npm..."
 npm install
-npm exec playwright install
+npx playwright install
 
 echo "Starting scraper server..."
 # You can replace this with pm2 or systemd if preferred
-nohup npm start > out.log 2>&1 &
-echo "Server started in background. Logs: $APP_DIR/out.log"
+# nohup npm start > out.log 2>&1 &
+# echo "Server started in background. Logs: $APP_DIR/out.log"
+
+# Start the server using PM2
+pm2 start server.js --name scrape-api
+pm2 save
+pm2 startup --hp ubuntu
