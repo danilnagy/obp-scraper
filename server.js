@@ -17,7 +17,7 @@ app.get("/scrape", async (req, res) => {
   try {
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
-    await page.goto("https://example.com");
+    await page.goto("https://google.com");
 
     const title = await page.title();
     const content = await page.textContent("body");
