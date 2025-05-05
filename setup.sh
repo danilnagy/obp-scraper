@@ -12,8 +12,8 @@ echo "Installing Node.js..."
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
 
-echo "Installing pnpm..."
-sudo npm install -g pnpm
+# echo "Installing pnpm..."
+# sudo npm install -g pnpm
 
 # Clone or update the repo
 if [ -d "$APP_DIR" ]; then
@@ -26,11 +26,11 @@ else
   cd "$APP_DIR"
 fi
 
-echo "Installing packages with pnpm..."
-pnpm install
-pnpm exec playwright install
+echo "Installing packages with npm..."
+npm install
+npm exec playwright install
 
 echo "Starting scraper server..."
 # You can replace this with pm2 or systemd if preferred
-nohup pnpm start > out.log 2>&1 &
+nohup npm start > out.log 2>&1 &
 echo "Server started in background. Logs: $APP_DIR/out.log"
