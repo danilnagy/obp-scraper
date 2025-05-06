@@ -21,6 +21,7 @@ log into instance
 wget https://raw.githubusercontent.com/danilnagy/obp-scraper/main/setup.sh
 chmod +x setup.sh
 ./setup.sh
+pm2 logs scrape-api
 ```
 
 go to Security
@@ -46,6 +47,9 @@ npm install
 npx playwright install-deps
 npx playwright install
 node server.js
+
+curl -X POST http://localhost:3232/scrape/dlc -H "Content-Type: application/json" -d "{\"username\":\"XXXX\",\"password\":\"XXXX\"}"
+curl -X POST http://<PUBLIC_IP:3232/scrape/dlcc -H "Content-Type: application/json" -d "{\"username\":\"XXXX\",\"password\":\"XXXX\"}"
 ```
 
 Notes:
