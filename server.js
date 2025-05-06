@@ -19,7 +19,7 @@ app.post("/scrape/:service", async (req, res) => {
   console.log("req.params", req.params);
   console.log("req.body", req.body);
 
-  const { username, password } = req.body;
+  const { username, password, dateFrom, dataTo } = req.body;
   const { service } = req.params;
 
   if (!service || !username || !password) {
@@ -30,7 +30,7 @@ app.post("/scrape/:service", async (req, res) => {
   }
 
   try {
-    const data = await scraper(service, { username, password });
+    const data = await scraper(service, req.body);
     res.json({ status: "success", data });
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
