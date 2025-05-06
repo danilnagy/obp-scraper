@@ -1,9 +1,12 @@
 // server.js
 const express = require("express");
-const { scrapeExampleDotCom } = require("./scraper");
+const { scraper } = require("./scraper");
 
 const app = express();
 const PORT = 3232;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
 
 // Optional: add basic logging
 app.use((req, res, next) => {
@@ -12,10 +15,23 @@ app.use((req, res, next) => {
 });
 
 // Scrape endpoint
-app.get("/scrape", async (req, res) => {
+app.post("/scrape/:service", async (req, res) => {
+  console.log("req.params", req.params);
+  console.log("req.body", req.body);
+
+  const { username, password } = req.body;
+  const { service } = req.params;
+
+  if (!service || !username || !password) {
+    return res.status(403).json({
+      status: "error",
+      message: "Forbidden",
+    });
+  }
+
   try {
-    const title = await scrapeExampleDotCom("6051Grafton", "@Remivi6051");
-    res.json({ status: "success", title });
+    const data = await scraper(service, { username, password });
+    res.json({ status: "success", data });
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
   }
