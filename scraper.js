@@ -9,7 +9,9 @@ async function scraper(service, params) {
     // case "coned":
     //   return await conedScraper(username, password);
     default:
-      throw new Error(`Unsupported service: ${service}`);
+      const message = `-> Unsupported service: ${service}`;
+      console.log(message);
+      throw new Error(message);
   }
 }
 
