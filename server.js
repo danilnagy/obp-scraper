@@ -30,8 +30,8 @@ app.post("/scrape/:service", async (req, res) => {
   }
 
   try {
-    const data = await scraper(service, req.body);
-    res.json({ status: "success", data });
+    const result = await scraper(service, req.body);
+    res.json(result);
   } catch (err) {
     res.status(500).json({ status: "error", message: err.message });
   }
